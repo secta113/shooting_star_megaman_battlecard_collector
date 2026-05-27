@@ -1,0 +1,27 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Scratch / local work files
+ryusei1/scratch_*.txt
+ryusei1/流星のロックマン*
+ryusei2/scratch_*.txt
+ryusei3/scratch_*.txt
+
+# Gemini AI workspace
+.gemini/

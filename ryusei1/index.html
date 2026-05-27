@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja" data-satellite="pegasus">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="流星のロックマン1のバトルカード収集率をトラッキングし、150枚のスタンダードカードおよびメガ、ギガクラスカード、ボクタイコラボカードをストーリーチャートとウェーブロード進行に沿って効率よく集めるためのルートチェッカーです。">
+  <title>流星のロックマン1 バトルカード収集チェッカー & ストーリーフローチャート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cyber mesh background effect -->
+  <div class="cyber-mesh-bg"></div>
+
+  <div class="app-container">
+    
+    <!-- Header with Stats -->
+    <header class="app-header glass-panel" id="app-header-sec">
+      <div class="header-top">
+        <div class="title-area">
+          <a href="../index.html" class="btn-back-portal" title="ポータルに戻る">◀ PORTAL</a>
+          <div class="logo-icon" id="logo-emblem">❄️</div>
+          <div>
+            <h1>RYUSEI 1 CARD CHECKER</h1>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-cyber);">SATELLITE CARD ROUTING & CHECKLIST</p>
+          </div>
+        </div>
+
+        <!-- Satellite Version Selector -->
+        <div class="satellite-selector-wrapper">
+          <span class="selector-label">サテライト選択:</span>
+          <div class="satellite-options">
+            <label class="satellite-opt active" data-sat="pegasus">
+              <input type="radio" name="satellite-choice" value="pegasus" checked>
+              <span class="opt-text">ペガサス</span>
+            </label>
+            <label class="satellite-opt" data-sat="leo">
+              <input type="radio" name="satellite-choice" value="leo">
+              <span class="opt-text">レオ</span>
+            </label>
+            <label class="satellite-opt" data-sat="dragon">
+              <input type="radio" name="satellite-choice" value="dragon">
+              <span class="opt-text">ドラゴン</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="controls-right">
+          <button class="btn-action" id="btn-export" style="color: var(--color-standard); border-color: rgba(0, 210, 255, 0.3);" title="現在のチェック状態をJSONファイルとして保存（ダウンロード）します">
+            データ書出
+          </button>
+          <button class="btn-action" id="btn-import" style="color: var(--text-muted); border-color: rgba(226, 232, 240, 0.2);" title="保存したJSONファイルを読み込んで状態を復元します">
+            データ読込
+          </button>
+          <input type="file" id="import-file-input" style="display: none;" accept=".json">
+          <button class="btn-action" id="btn-reset-default" title="すべてのカードを未所持状態にリセットします">
+            全リセット
+          </button>
+          <button class="btn-action" id="btn-check-all" style="color: var(--color-acquired); border-color: rgba(168, 85, 247, 0.3);" title="すべてのカードを所持状態に設定します">
+            すべて所持
+          </button>
+        </div>
+      </div>
+      
+      <!-- Stats Progress Bars -->
+      <div class="stats-container">
+        <!-- Standard Class Stat -->
+        <div class="stat-box glass-panel" id="stat-standard-box">
+          <div class="stat-label">Standard Class</div>
+          <div class="stat-value" id="stat-standard-val">0 <span>/ 150</span></div>
+          <div class="stat-progress-bar-bg">
+            <div class="stat-progress-bar-fill" id="stat-standard-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        
+        <!-- Mega Class Stat -->
+        <div class="stat-box glass-panel" id="stat-mega-box">
+          <div class="stat-label">Mega Class</div>
+          <div class="stat-value" id="stat-mega-val">0 <span>/ 36</span></div>
+          <div class="stat-progress-bar-bg">
+            <div class="stat-progress-bar-fill" id="stat-mega-fill" style="width: 0%; color: var(--color-mega);"></div>
+          </div>
+        </div>
+        
+        <!-- Giga Class Stat -->
+        <div class="stat-box glass-panel" id="stat-giga-box">
+          <div class="stat-label">Giga Class (Satellite)</div>
+          <div class="stat-value" id="stat-giga-val">0 <span>/ 5</span></div>
+          <div class="stat-progress-bar-bg">
+            <div class="stat-progress-bar-fill" id="stat-giga-fill" style="width: 0%; color: var(--color-giga);"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Control Bar (Tabs, Search) -->
+    <div class="nav-control-panel glass-panel" id="nav-control-bar">
+      <div class="tabs">
+        <button class="tab-btn active" id="tab-btn-flowchart" onclick="switchTab('flowchart')">ストーリー進行チャート (全150枚)</button>
+        <button class="tab-btn" id="tab-btn-monsterbook" onclick="switchTab('monsterbook')">モンスター図鑑</button>
+        <button class="tab-btn" id="tab-btn-checklist" onclick="switchTab('checklist')">カードチェックリスト</button>
+      </div>
+      
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="card-search" placeholder="カード名・出現場所・ウイルス名で検索...">
+      </div>
+    </div>
+    
+    <!-- Card Class Filter Chips (Only shown on Checklist tab by default) -->
+    <div class="class-filters" id="class-filter-bar" style="display: none;">
+      <div class="filter-chip active" data-class="all" id="filter-all">ALL</div>
+      <div class="filter-chip" data-class="standard" id="filter-standard">Standard</div>
+      <div class="filter-chip" data-class="mega" id="filter-mega">Mega</div>
+      <div class="filter-chip" data-class="giga" id="filter-giga">Giga</div>
+      <div class="filter-chip" data-class="bokutai" id="filter-bokutai">Bokutai Collab</div>
+      <div class="filter-chip" data-class="gentei" id="filter-gentei">Event</div>
+    </div>
+    
+    <!-- Flowchart Tab Content -->
+    <div class="tab-content active" id="tab-content-flowchart">
+      <!-- Flowchart renderer target -->
+      <div id="flowchart-renderer-container">
+        <!-- Dynamically populated via flowchart.js -->
+      </div>
+    </div>
+
+    <!-- Monsterbook Tab Content -->
+    <div class="tab-content" id="tab-content-monsterbook">
+      <div class="monsterbook-container">
+        <div class="monster-grid" id="monster-grid-container">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist Tab Content -->
+    <div class="tab-content glass-panel" id="tab-content-checklist">
+      <div class="table-wrapper">
+        <table class="card-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">No.</th>
+              <th style="width: 212px;">名前</th>
+              <th>入手方法 (ショップ/宝箱など)</th>
+              <th style="width: 320px;">所持ウイルス情報（出現場所）</th>
+              <th style="width: 80px; text-align: center;">所持</th>
+            </tr>
+          </thead>
+          <tbody id="card-table-body">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Scripts -->
+  <script src="card_data.js"></script>
+  <script src="flowchart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

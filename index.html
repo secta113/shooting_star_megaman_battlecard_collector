@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="流星のロックマン シリーズのバトルカード収集チェッカーポータル。作品を選択してチェックリストとフローチャートへアクセスできます。">
+  <title>流星のロックマン バトルカードチェッカー ポータル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal_style.css">
+</head>
+<body>
+
+  <!-- Cyber grid animated background -->
+  <div class="cyber-bg">
+    <div class="grid-lines"></div>
+  </div>
+
+  <div class="portal-container">
+    <header class="portal-header">
+      <div class="logo-area">
+        <span class="logo-symbol">⚡</span>
+        <h1>SHOOTING STAR MEGAMAN</h1>
+      </div>
+      <p class="subtitle">BATTLE CARD COLLECTOR PORTAL & ROUTING SYSTEM</p>
+    </header>
+
+    <main class="portal-grid">
+      
+      <!-- Ryusei 1 Card -->
+      <a href="ryusei1/index.html" class="game-card ryusei1" id="card-ryusei1">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="version-tag">ACTIVE</div>
+          <div class="game-icon">🛡️</div>
+          <h2>流星のロックマン</h2>
+          <p class="game-desc">宇宙からの電波生命体「ウォーロック」との出会い。電波変換による戦いの始まり。</p>
+          
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span class="progress-label">CARD ACQUIRED</span>
+              <span class="progress-pct" id="pct-ryusei1">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="fill-ryusei1" style="width: 0%;"></div>
+            </div>
+            <div class="progress-stats" id="stats-ryusei1">
+              Standard: 0/150 | Mega: 0/30 | Giga: 0/5
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Ryusei 2 Card -->
+      <a href="ryusei2/index.html" class="game-card ryusei2" id="card-ryusei2">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="version-tag">ACTIVE</div>
+          <div class="game-icon">🔥</div>
+          <h2>流星のロックマン２</h2>
+          <p class="game-desc">超古代文明「ムー」の謎。ベルセルク、シノビ、ダイナソーの力が目覚める。</p>
+          
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span class="progress-label">CARD ACQUIRED</span>
+              <span class="progress-pct" id="pct-ryusei2">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="fill-ryusei2" style="width: 0%;"></div>
+            </div>
+            <div class="progress-stats" id="stats-ryusei2">
+              Standard: 0/150 | Mega: 0/42 | Giga: 0/15
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Ryusei 3 Card -->
+      <a href="ryusei3/index.html" class="game-card ryusei3" id="card-ryusei3">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="version-tag">ACTIVE</div>
+          <div class="game-icon">💥</div>
+          <h2>流星のロックマン３</h2>
+          <p class="game-desc">ノイズの脅威とメテオサーバー。ブラックエース＆レッドジョーカーの究極変調。</p>
+          
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span class="progress-label">CARD ACQUIRED</span>
+              <span class="progress-pct" id="pct-ryusei3">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="fill-ryusei3" style="width: 0%;"></div>
+            </div>
+            <div class="progress-stats" id="stats-ryusei3">
+              Standard: 0/150 | Mega: 0/45 | Giga: 0/10
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </main>
+
+    <footer class="portal-footer">
+      <p>&copy; 2026 SHOOTING STAR MEGAMAN APP | POWERED BY ANTIGRAVITY</p>
+    </footer>
+  </div>
+
+  <script>
+    // Config values for card counts
+    const METRICS = {
+      ryusei1: { std: 150, mega: 30, giga: 5, key: "ryusei1_checker_possession_v1" },
+      ryusei2: { std: 150, mega: 42, giga: 15, key: "ryusei2_checker_possession_v1" },
+      ryusei3: { std: 150, mega: 45, giga: 10, key: "ryusei3_checker_possession_v1" }
+    };
+
+    function updateProgressUI(gameId, data, satellite = "pegasus") {
+      if (!data) return;
+      const m = METRICS[gameId];
+      let acquiredStd = 0;
+      let acquiredMega = 0;
+      let acquiredGiga = 0;
+
+      // Count possession
+      if (data.standard) {
+        Object.keys(data.standard).forEach(k => { if (data.standard[k]) acquiredStd++; });
+      }
+
+      if (gameId === "ryusei1") {
+        // Define version-exclusive lists
+        const pegasusMegas = ["ペガサスマジック", "ペガサスマジックＥＸ", "ペガサスマジックＳＰ"];
+        const leoMegas = ["レオキングダム", "レオキングダムＥＸ", "レオキングダムＳＰ"];
+        const dragonMegas = ["ドラゴンスカイ", "ドラゴンスカイＥＸ", "ドラゴンスカイＳＰ"];
+
+        const pegasusGigas = ["ペガサスマジックＧＸ", "アクア＋５０", "オックスタックル", "ブレイクカウントボム", "ダークソード"];
+        const leoGigas = ["レオキングダムＧＸ", "ファイア＋５０", "ジェミニサンダー", "ダークネスホール", "ドリームオーラ"];
+        const dragonGigas = ["ドラゴンスカイGX", "ウッド＋５０", "ゴルゴンアイ", "デストロイミサイル", "ポイズンファラオ"];
+
+        if (data.mega) {
+          Object.keys(data.mega).forEach(k => {
+            if (data.mega[k]) {
+              // Exclude other versions' specific Megas
+              if (satellite === "pegasus" && (leoMegas.includes(k) || dragonMegas.includes(k))) return;
+              if (satellite === "leo" && (pegasusMegas.includes(k) || dragonMegas.includes(k))) return;
+              if (satellite === "dragon" && (pegasusMegas.includes(k) || leoMegas.includes(k))) return;
+              acquiredMega++;
+            }
+          });
+        }
+
+        if (data.giga) {
+          Object.keys(data.giga).forEach(k => {
+            if (data.giga[k]) {
+              // Only count active version's Gigas
+              if (satellite === "pegasus" && pegasusGigas.includes(k)) acquiredGiga++;
+              if (satellite === "leo" && leoGigas.includes(k)) acquiredGiga++;
+              if (satellite === "dragon" && dragonGigas.includes(k)) acquiredGiga++;
+            }
+          });
+        }
+      } else {
+        if (data.mega) {
+          Object.keys(data.mega).forEach(k => { if (data.mega[k]) acquiredMega++; });
+        }
+        if (data.giga) {
+          Object.keys(data.giga).forEach(k => { if (data.giga[k]) acquiredGiga++; });
+        }
+      }
+
+      const totalAcquired = acquiredStd + acquiredMega + acquiredGiga;
+      const totalCards = m.std + m.mega + m.giga;
+      const pct = Math.round((totalAcquired / totalCards) * 100) || 0;
+
+      // Update elements
+      document.getElementById(`pct-${gameId}`).textContent = `${pct}%`;
+      document.getElementById(`fill-${gameId}`).style.width = `${pct}%`;
+      document.getElementById(`stats-${gameId}`).textContent = 
+        `Standard: ${acquiredStd}/${m.std} | Mega: ${acquiredMega}/${m.mega} | Giga: ${acquiredGiga}/${m.giga}`;
+    }
+
+    function loadProgressForGame(gameId) {
+      const isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+      const m = METRICS[gameId];
+
+      if (isHttp) {
+        // Fetch from API
+        fetch(`/api/progress?title=${gameId}`)
+          .then(res => res.ok ? res.json() : null)
+          .then(data => {
+            if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+              const posData = data.possession || data;
+              const satellite = data.satellite || "pegasus";
+              updateProgressUI(gameId, posData, satellite);
+            } else {
+              // Try local storage as fallback
+              loadFromLocalStorage(gameId);
+            }
+          })
+          .catch(() => {
+            loadFromLocalStorage(gameId);
+          });
+      } else {
+        loadFromLocalStorage(gameId);
+      }
+    }
+
+    function loadFromLocalStorage(gameId) {
+      const m = METRICS[gameId];
+      const saved = localStorage.getItem(m.key);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          const data = parsed.possession || parsed;
+          const satellite = parsed.satellite || "pegasus";
+          updateProgressUI(gameId, data, satellite);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+
+    // Load progress for all active games
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProgressForGame("ryusei1");
+      loadProgressForGame("ryusei2");
+      loadProgressForGame("ryusei3");
+    });
+  </script>
+</body>
+</html>

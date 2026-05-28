@@ -142,7 +142,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "学校の電脳２（固定）       いいんちょうのへやの電波（固定）       ヤシブタウンの電波（固定）       はいきぶつの電脳３（固定）",
-      "earliest_chapter": 1
+      "earliest_chapter": 5
     },
     {
       "no": 19,
@@ -278,7 +278,7 @@ const CARD_DATABASE = {
       "virus": "クロケット",
       "virus_loc": "けしょうだいの電脳",
       "source": "",
-      "earliest_chapter": 1
+      "earliest_chapter": 6
     },
     {
       "no": 36,
@@ -366,7 +366,7 @@ const CARD_DATABASE = {
       "virus": "デスカウント",
       "virus_loc": "コダマタウンの電波 \n      ＢＩＧＷＡＶＥの電波 \n      うちゅうくうかんの電波３",
       "source": "",
-      "earliest_chapter": 1
+      "earliest_chapter": 2
     },
     {
       "no": 47,
@@ -798,7 +798,7 @@ const CARD_DATABASE = {
       "virus": "シシカシュー",
       "virus_loc": "てんぼうだいの電波",
       "source": "ピアノの電脳（固定）",
-      "earliest_chapter": 1
+      "earliest_chapter": 3
     },
     {
       "no": 101,
@@ -806,7 +806,7 @@ const CARD_DATABASE = {
       "virus": "シシンガー",
       "virus_loc": "アマケンがいかんの電波",
       "source": "",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 102,

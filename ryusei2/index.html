@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-game="ryusei2" data-tribe="berserk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="流星のロックマン2のバトルカード収集率をトラッキングし、未所持の31枚のカードを効率よく集めるためのエリア別獲得ルートをインタラクティブに確認できる、高機能なチェックリストアプリです。">
+  <meta name="description" content="流星のロックマン2のバトルカード収集率をトラッキングし、カードを効率よく集めるためのエリア別獲得ルートをインタラクティブに確認できる、高機能なチェックリストアプリです。">
   <title>流星のロックマン2 バトルカード収集チェッカー & 獲得フローチャート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common_checker_style.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,27 +19,47 @@
     <header class="app-header glass-panel" id="app-header-sec">
       <div class="header-top">
         <div class="title-area">
-          <a href="../index.html" class="btn-back-portal" style="text-decoration: none; font-family: var(--font-cyber); font-size: 0.8rem; padding: 6px 12px; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.3); color: var(--color-standard); margin-right: 15px; background: rgba(0, 242, 254, 0.05); transition: all 0.3s ease; display: inline-flex; align-items: center;" onmouseover="this.style.background='rgba(0, 242, 254, 0.2)'; this.style.borderColor='#00f2fe';" onmouseout="this.style.background='rgba(0, 242, 254, 0.05)'; this.style.borderColor='rgba(0, 242, 254, 0.3)';">◀ PORTAL</a>
+          <a href="../index.html" class="btn-back-portal" title="ポータルに戻る">◀ PORTAL</a>
           <div class="logo-icon" id="logo-emblem">⚡</div>
           <div>
             <h1>RYUSEI 2 CARD CHECKER</h1>
-            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-cyber);">WAVE WORLD CARD CHECKLIST & ROUTING SYSTEM</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-cyber);">WAVE ROAD CARD ROUTING & CHECKLIST</p>
+          </div>
+        </div>
+
+        <!-- Tribe Version Selector (Middle) -->
+        <div class="tribe-selector-wrapper">
+          <span class="selector-label">トライブ選択:</span>
+          <div class="tribe-options">
+            <label class="tribe-opt active" data-tribe="berserk">
+              <input type="radio" name="tribe-choice" value="berserk" checked>
+              <span class="opt-text">ベルセルク</span>
+            </label>
+            <label class="tribe-opt" data-tribe="shinobi">
+              <input type="radio" name="tribe-choice" value="shinobi">
+              <span class="opt-text">シノビ</span>
+            </label>
+            <label class="tribe-opt" data-tribe="dinosaur">
+              <input type="radio" name="tribe-choice" value="dinosaur">
+              <span class="opt-text">ダイナソー</span>
+            </label>
           </div>
         </div>
         
+        <!-- Action Buttons (Right) -->
         <div class="controls-right">
           <button class="btn-action" id="btn-export" style="color: var(--color-standard); border-color: rgba(0, 242, 254, 0.3);" title="現在のチェック状態をJSONファイルとして保存（ダウンロード）します">
             データ書出
           </button>
-          <button class="btn-action" id="btn-import" style="color: var(--color-blank); border-color: rgba(226, 232, 240, 0.3);" title="保存したJSONファイルを読み込んで状態を復元します">
+          <button class="btn-action" id="btn-import" style="color: var(--text-muted); border-color: rgba(226, 232, 240, 0.2);" title="保存したJSONファイルを読み込んで状態を復元します">
             データ読込
           </button>
           <input type="file" id="import-file-input" style="display: none;" accept=".json">
           <button class="btn-action" id="btn-reset-default" title="ユーザー様指定の31枚未所持状態にリセットします">
-            未所持リストにリセット
+            全リセット
           </button>
           <button class="btn-action" id="btn-check-all" style="color: var(--color-acquired); border-color: rgba(16, 185, 129, 0.3);" title="すべてのカードを所持状態に設定します">
-            すべて所持にする
+            すべて所持
           </button>
         </div>
       </div>
@@ -47,7 +71,7 @@
           <div class="stat-label">Standard Class</div>
           <div class="stat-value" id="stat-standard-val">0 <span>/ 150</span></div>
           <div class="stat-progress-bar-bg">
-            <div class="stat-progress-bar-fill" id="stat-standard-fill" style="width: 0%; color: var(--color-standard);"></div>
+            <div class="stat-progress-bar-fill" id="stat-standard-fill" style="width: 0%; color: var(--color-theme);"></div>
           </div>
         </div>
         
@@ -56,7 +80,7 @@
           <div class="stat-label">Mega Class</div>
           <div class="stat-value" id="stat-mega-val">0 <span>/ 42</span></div>
           <div class="stat-progress-bar-bg">
-            <div class="stat-progress-bar-fill" id="stat-mega-fill" style="width: 0%; color: var(--color-mega);"></div>
+            <div class="stat-progress-bar-fill" id="stat-mega-fill" style="width: 0%; color: var(--color-theme);"></div>
           </div>
         </div>
         
@@ -65,7 +89,7 @@
           <div class="stat-label">Giga Class</div>
           <div class="stat-value" id="stat-giga-val">0 <span>/ 15</span></div>
           <div class="stat-progress-bar-bg">
-            <div class="stat-progress-bar-fill" id="stat-giga-fill" style="width: 0%; color: var(--color-giga);"></div>
+            <div class="stat-progress-bar-fill" id="stat-giga-fill" style="width: 0%; color: var(--color-theme);"></div>
           </div>
         </div>
       </div>
@@ -74,18 +98,19 @@
     <!-- Control Bar (Tabs, Search) -->
     <div class="nav-control-panel glass-panel" id="nav-control-bar">
       <div class="tabs">
-        <button class="tab-btn active" id="tab-btn-checklist" onclick="switchTab('checklist')">カードチェックリスト</button>
-        <button class="tab-btn" id="tab-btn-flowchart" onclick="switchTab('flowchart')">獲得フローチャート (31枚)</button>
+        <button class="tab-btn active" id="tab-btn-flowchart" onclick="switchTab('flowchart')">ストーリー進行チャート (全150枚)</button>
+        <button class="tab-btn" id="tab-btn-monsterbook" onclick="switchTab('monsterbook')">ウイルス図鑑</button>
+        <button class="tab-btn" id="tab-btn-checklist" onclick="switchTab('checklist')">カードチェックリスト</button>
       </div>
       
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" id="card-search" placeholder="カード名・入手先で検索...">
+        <input type="text" class="search-input" id="card-search" placeholder="カード名・入手先・ウイルス名で検索...">
       </div>
     </div>
     
     <!-- Card Class Filter Chips (Only shown on Checklist tab) -->
-    <div class="class-filters" id="class-filter-bar">
+    <div class="class-filters" id="class-filter-bar" style="display: none;">
       <div class="filter-chip active" data-class="all" id="filter-all">ALL</div>
       <div class="filter-chip" data-class="standard" id="filter-standard">Standard</div>
       <div class="filter-chip" data-class="mega" id="filter-mega">Mega</div>
@@ -94,8 +119,25 @@
       <div class="filter-chip" data-class="gentei" id="filter-gentei">Event</div>
     </div>
     
+    <!-- Flowchart Tab Content -->
+    <div class="tab-content active" id="tab-content-flowchart">
+      <!-- Flowchart renderer target -->
+      <div id="flowchart-renderer-container">
+        <!-- Dynamically populated via flowchart.js -->
+      </div>
+    </div>
+
+    <!-- Monsterbook Tab Content -->
+    <div class="tab-content" id="tab-content-monsterbook">
+      <div class="monsterbook-container">
+        <div class="monster-grid" id="monster-grid-container">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </div>
+
     <!-- Checklist Tab Content -->
-    <div class="tab-content active glass-panel" id="tab-content-checklist">
+    <div class="tab-content glass-panel" id="tab-content-checklist">
       <div class="table-wrapper">
         <table class="card-table">
           <thead>
@@ -103,7 +145,7 @@
               <th style="width: 80px;">No.</th>
               <th style="width: 180px;">名前</th>
               <th>入手先</th>
-              <th style="width: 250px;">ウイルス情報（出現場所）</th>
+              <th style="width: 250px;">所持ウイルス情報（出現場所）</th>
               <th style="width: 80px; text-align: center;">所持</th>
             </tr>
           </thead>
@@ -111,14 +153,6 @@
             <!-- Dynamically populated via JS -->
           </tbody>
         </table>
-      </div>
-    </div>
-    
-    <!-- Flowchart Tab Content -->
-    <div class="tab-content" id="tab-content-flowchart">
-      <!-- Flowchart renderer target -->
-      <div id="flowchart-renderer-container">
-        <!-- Dynamically populated via flowchart.js -->
       </div>
     </div>
     

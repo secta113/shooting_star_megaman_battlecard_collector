@@ -1356,8 +1356,8 @@ const MONSTER_DATABASE = [
 const FLOWCHART_AREAS = [
   {
     id: "ch1",
-    title: "第1章「ルナルナだん結成」",
-    description: "ストーリー第1章。スペード・マグネッツ戦まで（コダマタウン、スピカモール等）。",
+    title: "スペード・マグネッツ戦まで",
+    description: "コダマタウン、スピカモールでの事件解決まで。",
     cards: [
       {
         no: 1,
@@ -1510,8 +1510,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "ch2",
-    title: "第2章「転校生ジャック」",
-    description: "ストーリー第2章。ダイヤ・アイスバーン戦まで（オクダマスタジオ、ライブ特設ステージ等）。",
+    title: "ダイヤ・アイスバーン戦まで",
+    description: "オクダマスタジオ、ライブ特設ステージでの事件解決まで。",
     cards: [
       {
         no: 2,
@@ -1776,8 +1776,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "ch3",
-    title: "第3章「シーサーアイランド」",
-    description: "ストーリー第3章。クラブ・ストロング戦まで（シーサーアイランド、環境システム等）。",
+    title: "クラブ・ストロング戦まで",
+    description: "シーサーアイランド、環境システムでの事件解決まで。",
     cards: [
       {
         no: 16,
@@ -1818,8 +1818,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "ch4",
-    title: "第4章「委員長を取り戻せ」",
-    description: "ストーリー第4章。クイーン・ヴァルゴ＆アシッド戦まで（WAXA日本支部、サテラポリス本部等）。",
+    title: "クイーン・ヴァルゴ＆アシッド・エース戦まで",
+    description: "WAXA日本支部、サテラポリス本部での事件解決まで。",
     cards: [
       {
         no: 7,
@@ -1874,8 +1874,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "ch5",
-    title: "第5章「ディーラーの脅威」",
-    description: "ストーリー第5章。ジャック・コーヴァス戦まで（生徒会長選挙、学校周辺ノイズ等）。",
+    title: "ジャック・コーヴァス戦まで",
+    description: "生徒会長選挙、学校周辺ノイズでの事件解決まで。",
     cards: [
       {
         no: 10,
@@ -1958,8 +1958,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "ch6",
-    title: "第6章「ディーラー壊滅」",
-    description: "ストーリー第6章。グレイブ・ジョーカー戦まで（地下シェルター、クリムゾンマシン等）。",
+    title: "グレイブ・ジョーカー戦まで",
+    description: "地下シェルター、クリムゾンマシンでの事件解決まで。",
     cards: [
       {
         no: 3,
@@ -2063,8 +2063,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "ch7",
-    title: "第7章「メテオＧ〜エンディング」",
-    description: "ストーリー第7章。シリウス＆クリムゾン・ドラゴン戦まで（オービタルベース、メテオサーバー等）。",
+    title: "クリムゾン・ドラゴン戦まで",
+    description: "オービタルベース、メテオサーバーでの最終決戦まで。",
     cards: [
       {
         no: 29,
@@ -2182,8 +2182,8 @@ const FLOWCHART_AREAS = [
   },
   {
     id: "post_game",
-    title: "クリア後：エンドコンテンツ",
-    description: "クリア後の高難易度エリア（ノイズウェーブ4〜6、外宇宙、FM星、ブラックホールサーバー等）。",
+    title: "クリア後：エンドコンテンツ（シリウス戦など）",
+    description: "ノイズウェーブ4〜6、外宇宙、FM星、ブラックホールサーバー（シリウス戦）など。",
     cards: [
       {
         no: 18,
@@ -2564,7 +2564,6 @@ function renderFlowchartContainerOnce(targetElementId, onToggleCallback) {
           <div class="chip-virus-info" onclick="event.stopPropagation(); gotoMonsterBook('${card.virus}')" title="図鑑で出現場所を見る">
             <span class="virus-label">対象：</span>
             <span class="virus-name">${card.virus}</span>
-            <span class="btn-goto-monster">👾</span>
           </div>
         `;
       }

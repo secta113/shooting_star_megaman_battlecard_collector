@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-game="ryusei3">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common_checker_style.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,6 +30,17 @@
           </div>
         </div>
         
+        <!-- Middle Controls (Reset / Check All) -->
+        <div class="controls-middle">
+          <button class="btn-action" id="btn-reset-default" title="すべてのカードを未所持状態にリセットします">
+            全リセット
+          </button>
+          <button class="btn-action" id="btn-check-all" style="color: var(--color-acquired); border-color: rgba(168, 85, 247, 0.3);" title="すべてのカードを所持状態に設定します">
+            すべて所持
+          </button>
+        </div>
+        
+        <!-- Right Controls (Serialization / Export & Import) -->
         <div class="controls-right">
           <button class="btn-action" id="btn-export" style="color: var(--color-standard); border-color: rgba(239, 68, 68, 0.3);" title="現在のチェック状態をJSONファイルとして保存（ダウンロード）します">
             データ書出
@@ -37,12 +49,6 @@
             データ読込
           </button>
           <input type="file" id="import-file-input" style="display: none;" accept=".json">
-          <button class="btn-action" id="btn-reset-default" title="すべてのカードを未所持状態にリセットします">
-            全リセット（未所持）
-          </button>
-          <button class="btn-action" id="btn-check-all" style="color: var(--color-acquired); border-color: rgba(168, 85, 247, 0.3);" title="すべてのカードを所持状態に設定します">
-            すべて所持にする
-          </button>
         </div>
       </div>
       

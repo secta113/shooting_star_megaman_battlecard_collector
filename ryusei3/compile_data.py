@@ -28,14 +28,14 @@ def main():
     
     # 3. Group cards by chapter for flowchart
     chapters = [
-        {"id": "ch1", "num": 1, "title": "第1章「ルナルナだん結成」", "desc": "ストーリー第1章。スペード・マグネッツ戦まで（コダマタウン、スピカモール等）。"},
-        {"id": "ch2", "num": 2, "title": "第2章「転校生ジャック」", "desc": "ストーリー第2章。ダイヤ・アイスバーン戦まで（オクダマスタジオ、ライブ特設ステージ等）。"},
-        {"id": "ch3", "num": 3, "title": "第3章「シーサーアイランド」", "desc": "ストーリー第3章。クラブ・ストロング戦まで（シーサーアイランド、環境システム等）。"},
-        {"id": "ch4", "num": 4, "title": "第4章「委員長を取り戻せ」", "desc": "ストーリー第4章。クイーン・ヴァルゴ＆アシッド戦まで（WAXA日本支部、サテラポリス本部等）。"},
-        {"id": "ch5", "num": 5, "title": "第5章「ディーラーの脅威」", "desc": "ストーリー第5章。ジャック・コーヴァス戦まで（生徒会長選挙、学校周辺ノイズ等）。"},
-        {"id": "ch6", "num": 6, "title": "第6章「ディーラー壊滅」", "desc": "ストーリー第6章。グレイブ・ジョーカー戦まで（地下シェルター、クリムゾンマシン等）。"},
-        {"id": "ch7", "num": 7, "title": "第7章「メテオＧ〜エンディング」", "desc": "ストーリー第7章。シリウス＆クリムゾン・ドラゴン戦まで（オービタルベース、メテオサーバー等）。"},
-        {"id": "post_game", "num": 8, "title": "クリア後：エンドコンテンツ", "desc": "クリア後の高難易度エリア（ノイズウェーブ4〜6、外宇宙、FM星、ブラックホールサーバー等）。"}
+        {"id": "ch1", "num": 1, "title": "スペード・マグネッツ戦まで", "desc": "コダマタウン、スピカモールでの事件解決まで。"},
+        {"id": "ch2", "num": 2, "title": "ダイヤ・アイスバーン戦まで", "desc": "オクダマスタジオ、ライブ特設ステージでの事件解決まで。"},
+        {"id": "ch3", "num": 3, "title": "クラブ・ストロング戦まで", "desc": "シーサーアイランド、環境システムでの事件解決まで。"},
+        {"id": "ch4", "num": 4, "title": "クイーン・ヴァルゴ＆アシッド・エース戦まで", "desc": "WAXA日本支部、サテラポリス本部での事件解決まで。"},
+        {"id": "ch5", "num": 5, "title": "ジャック・コーヴァス戦まで", "desc": "生徒会長選挙、学校周辺ノイズでの事件解決まで。"},
+        {"id": "ch6", "num": 6, "title": "グレイブ・ジョーカー戦まで", "desc": "地下シェルター、クリムゾンマシンでの事件解決まで。"},
+        {"id": "ch7", "num": 7, "title": "クリムゾン・ドラゴン戦まで", "desc": "オービタルベース、メテオサーバーでの最終決戦まで。"},
+        {"id": "post_game", "num": 8, "title": "クリア後：エンドコンテンツ（シリウス戦など）", "desc": "ノイズウェーブ4〜6、外宇宙、FM星、ブラックホールサーバー（シリウス戦）など。"}
     ]
     
     chapter_map = {ch["num"]: ch["id"] for ch in chapters}
@@ -201,7 +201,6 @@ function renderFlowchartContainerOnce(targetElementId, onToggleCallback) {
           <div class="chip-virus-info" onclick="event.stopPropagation(); gotoMonsterBook('${card.virus}')" title="図鑑で出現場所を見る">
             <span class="virus-label">対象：</span>
             <span class="virus-name">${card.virus}</span>
-            <span class="btn-goto-monster">👾</span>
           </div>
         `;
       }

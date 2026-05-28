@@ -554,7 +554,7 @@ function renderChecklist() {
     const tdVirus = document.createElement("td");
     if (card.virus) {
       tdVirus.innerHTML = `
-        <div class="virus-name-badge">${card.virus} <button class="btn-goto-monster" onclick="event.stopPropagation(); gotoMonsterBook('${card.virus}')" title="図鑑で出現場所を見る">👾</button></div>
+        <div class="virus-name-badge" onclick="gotoMonsterBook('${card.virus}')" title="図鑑で出現場所を見る">${card.virus}</div>
         <div style="font-size: 0.8rem; color: var(--text-muted);">${card.virus_loc}</div>
       `;
     } else {
@@ -743,6 +743,104 @@ function setupEventListeners() {
     });
   }
 }
+
+// ============================================================
+// DOM-based tooltip system for .source-more-tag
+// Handles both PC hover and mobile tap, with smart positioning
+// ============================================================
+let activeSourceTooltip = null;
+let activeSourceTag = null;
+
+function showSourceTooltip(tag) {
+  hideSourceTooltip();
+  const text = tag.getAttribute('data-tooltip');
+  if (!text) return;
+
+  const popup = document.createElement('div');
+  popup.className = 'source-tooltip-popup';
+  popup.textContent = text;
+  document.body.appendChild(popup);
+  activeSourceTooltip = popup;
+  activeSourceTag = tag;
+
+  // Position: prefer above the badge, fall back to below if no space
+  const rect = tag.getBoundingClientRect();
+  const popW = Math.min(320, window.innerWidth - 24);
+  const MARGIN = 8;
+
+  // Horizontal: align right edge with badge right, but keep within viewport
+  let left = rect.right - popW;
+  if (left < MARGIN) left = MARGIN;
+  if (left + popW > window.innerWidth - MARGIN) left = window.innerWidth - MARGIN - popW;
+
+  // Vertical: place above if room, else below
+  popup.style.maxWidth = popW + 'px';
+  popup.style.left = left + 'px';
+  popup.style.top = '-9999px'; // temp to measure height
+  popup.style.visibility = 'hidden';
+
+  requestAnimationFrame(() => {
+    const popH = popup.offsetHeight;
+    let top;
+    if (rect.top - popH - MARGIN >= 0) {
+      // Enough space above: show above the badge
+      top = rect.top - popH - MARGIN;
+    } else {
+      // Not enough space above: show below the badge
+      top = rect.bottom + MARGIN;
+    }
+    popup.style.top = top + 'px';
+    popup.style.visibility = 'visible';
+  });
+}
+
+function hideSourceTooltip() {
+  if (activeSourceTooltip) {
+    activeSourceTooltip.remove();
+    activeSourceTooltip = null;
+    activeSourceTag = null;
+  }
+}
+
+// PC: hover
+document.addEventListener('mouseover', (e) => {
+  const tag = e.target.closest('.source-more-tag');
+  if (tag) {
+    showSourceTooltip(tag);
+  }
+}, { passive: true });
+
+document.addEventListener('mouseout', (e) => {
+  const tag = e.target.closest('.source-more-tag');
+  if (tag && !tag.contains(e.relatedTarget)) {
+    hideSourceTooltip();
+  }
+}, { passive: true });
+
+// Mobile: tap to toggle
+document.addEventListener('click', (e) => {
+  const sourceTag = e.target.closest('.source-more-tag');
+  const locTag = e.target.closest('.location-tag');
+
+  if (sourceTag) {
+    if (activeSourceTag === sourceTag) {
+      hideSourceTooltip();
+    } else {
+      showSourceTooltip(sourceTag);
+    }
+  } else if (!locTag) {
+    hideSourceTooltip();
+  }
+
+  // location-tag toggle (mobile)
+  if (locTag) {
+    locTag.classList.toggle('tooltip-active');
+  } else {
+    document.querySelectorAll('.location-tag.tooltip-active').forEach(t => {
+      t.classList.remove('tooltip-active');
+    });
+  }
+});
 
 // Document Ready Initialization
 document.addEventListener("DOMContentLoaded", () => {

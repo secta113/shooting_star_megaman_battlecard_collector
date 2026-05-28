@@ -242,7 +242,7 @@ function renderMonsterBook() {
       const displayNo = classType === "gentei" ? "---" : String(card.no).padStart(3, '0');
       
       dropHtml = `
-        <div class="monster-drop-badge monster-drop-${classType}-${cardKey} ${isAcq ? 'acquired' : 'missing'}" 
+        <div class="monster-drop-info monster-drop-${classType}-${cardKey} ${isAcq ? 'acquired' : 'missing'}" 
              data-class="${classType}" data-key="${cardKey}"
              onclick="event.stopPropagation(); toggleCard('${classType}', '${cardKey}')" 
              title="クリックで所持状況を切り替え">
@@ -268,6 +268,7 @@ function renderMonsterBook() {
       </div>
       <div class="monster-card-body">
         <div class="monster-drop-container">
+          <div class="drop-label">ドロップカード:</div>
           ${dropHtml}
         </div>
         <div class="monster-loc-container">
@@ -418,7 +419,7 @@ function buildChecklistDOM() {
       const tdVirus = document.createElement("td");
       if (virus && virus !== "-") {
         tdVirus.innerHTML = `
-          <div class="virus-name-badge">${virus} <button class="btn-goto-monster" onclick="event.stopPropagation(); gotoMonsterBook('${virus}')" title="図鑑で出現場所を見る">👾</button></div>
+          <div class="virus-name-badge" onclick="gotoMonsterBook('${virus}')" title="図鑑で出現場所を見る">${virus}</div>
           <div style="font-size: 0.8rem; color: var(--text-muted);">${getLocationTagHtml(virus_loc)}</div>
         `;
       } else {
@@ -564,7 +565,7 @@ function syncAllUIFromState() {
   // Update monster book drop states
   if (typeof MONSTER_DATABASE !== 'undefined') {
     MONSTER_DATABASE.forEach(monster => {
-      const cardInfo = findCardByName(monster.card_name);
+      const cardInfo = findCardByName(monster.drop_card);
       if (cardInfo) {
         const { classType, card } = cardInfo;
         const cardKey = classType === "gentei" ? card.name : card.no;

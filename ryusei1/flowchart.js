@@ -3880,7 +3880,6 @@ function renderFlowchartContainerOnce(targetElementId, onToggleCallback) {
           <div class="chip-virus-info" onclick="event.stopPropagation(); gotoMonsterBook('${card.virus}')" title="図鑑で出現場所を見る">
             <span class="virus-label">対象：</span>
             <span class="virus-name">${card.virus}</span>
-            <span class="btn-goto-monster">👾</span>
           </div>
         `;
       }

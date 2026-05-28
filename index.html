@@ -179,6 +179,61 @@
         `Standard: ${acquiredStd}/${m.std} | Mega: ${acquiredMega}/${m.mega} | Giga: ${acquiredGiga}/${m.giga}`;
     }
 
+    function validateAndSanitizeProgressData(gameId, rawData) {
+      if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData)) {
+        return null;
+      }
+
+      let expectedClasses = [];
+      if (gameId === "ryusei1") {
+        expectedClasses = ["standard", "mega", "giga", "bokutai", "gentei"];
+      } else if (gameId === "ryusei2") {
+        expectedClasses = ["standard", "mega", "giga", "blank", "gentei"];
+      } else if (gameId === "ryusei3") {
+        expectedClasses = ["standard", "mega", "giga", "gentei"];
+      } else {
+        return null;
+      }
+
+      const rawPos = rawData.possession || rawData;
+      if (!rawPos || typeof rawPos !== 'object' || Array.isArray(rawPos)) {
+        return null;
+      }
+
+      const sanitizedPos = {};
+      let hasValidClass = false;
+
+      expectedClasses.forEach(cl => {
+        sanitizedPos[cl] = {};
+        const rawClassData = rawPos[cl];
+        if (rawClassData && typeof rawClassData === 'object' && !Array.isArray(rawClassData)) {
+          hasValidClass = true;
+          Object.keys(rawClassData).forEach(key => {
+            if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+              return;
+            }
+            sanitizedPos[cl][key] = !!rawClassData[key];
+          });
+        }
+      });
+
+      if (!hasValidClass) {
+        return null;
+      }
+
+      let satellite = "pegasus";
+      if (rawData.satellite && typeof rawData.satellite === 'string') {
+        if (["pegasus", "leo", "dragon"].includes(rawData.satellite)) {
+          satellite = rawData.satellite;
+        }
+      }
+
+      return {
+        satellite: satellite,
+        possession: sanitizedPos
+      };
+    }
+
     function loadProgressForGame(gameId) {
       const isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
       const m = METRICS[gameId];
@@ -188,10 +243,9 @@
         fetch(`/api/progress?title=${gameId}`)
           .then(res => res.ok ? res.json() : null)
           .then(data => {
-            if (data && typeof data === 'object' && Object.keys(data).length > 0) {
-              const posData = data.possession || data;
-              const satellite = data.satellite || "pegasus";
-              updateProgressUI(gameId, posData, satellite);
+            const validated = validateAndSanitizeProgressData(gameId, data);
+            if (validated) {
+              updateProgressUI(gameId, validated.possession, validated.satellite);
             } else {
               // Try local storage as fallback
               loadFromLocalStorage(gameId);
@@ -211,9 +265,10 @@
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          const data = parsed.possession || parsed;
-          const satellite = parsed.satellite || "pegasus";
-          updateProgressUI(gameId, data, satellite);
+          const validated = validateAndSanitizeProgressData(gameId, parsed);
+          if (validated) {
+            updateProgressUI(gameId, validated.possession, validated.satellite);
+          }
         } catch (e) {
           console.error(e);
         }

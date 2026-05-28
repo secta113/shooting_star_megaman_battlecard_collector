@@ -6,20 +6,52 @@ let currentClassFilter = "all";
 let currentSearchQuery = "";
 
 // 1. Initialize State (All cards start as FALSE/unpossessed for Ryusei 3)
+function validateAndSanitizeState(rawData) {
+  if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData)) {
+    return null;
+  }
+
+  const expectedClasses = ["standard", "mega", "giga", "gentei"];
+  const rawPos = rawData.possession || rawData;
+  if (!rawPos || typeof rawPos !== 'object' || Array.isArray(rawPos)) {
+    return null;
+  }
+
+  const sanitizedPos = {};
+  let hasValidClass = false;
+
+  expectedClasses.forEach(cl => {
+    sanitizedPos[cl] = {};
+    const rawClassData = rawPos[cl];
+    if (rawClassData && typeof rawClassData === 'object' && !Array.isArray(rawClassData)) {
+      hasValidClass = true;
+      Object.keys(rawClassData).forEach(key => {
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+          return;
+        }
+        sanitizedPos[cl][key] = !!rawClassData[key];
+      });
+    }
+  });
+
+  if (!hasValidClass) {
+    return null;
+  }
+
+  return sanitizedPos;
+}
+
 function initializeState(forceResetDefault = false) {
   const savedState = localStorage.getItem(STORAGE_KEY);
   
   if (savedState && !forceResetDefault) {
     try {
-      appPossession = JSON.parse(savedState);
-      
-      // Ensure all classes exist
-      if (!appPossession.standard) appPossession.standard = {};
-      if (!appPossession.mega) appPossession.mega = {};
-      if (!appPossession.giga) appPossession.giga = {};
-      if (!appPossession.gentei) appPossession.gentei = {};
-      
-      return;
+      const rawData = JSON.parse(savedState);
+      const validated = validateAndSanitizeState(rawData);
+      if (validated) {
+        appPossession = validated;
+        return;
+      }
     } catch (e) {
       console.error("Failed to parse saved state, resetting...", e);
     }
@@ -632,18 +664,15 @@ function bindActions() {
       reader.onload = function(event) {
         try {
           const parsed = JSON.parse(event.target.result);
+          const validated = validateAndSanitizeState(parsed);
           
-          // Basic validation to check keys
-          const requiredKeys = ["standard", "mega", "giga", "gentei"];
-          const hasKeys = requiredKeys.every(k => parsed.hasOwnProperty(k));
-          
-          if (!hasKeys) {
+          if (!validated) {
             alert("無効なファイル形式です。セーブデータの項目が見つかりません。");
             return;
           }
 
           if (confirm("ファイルを読み込み、現在の進捗状況を復元しますか？")) {
-            appPossession = parsed;
+            appPossession = validated;
             saveState();
             syncAllUIFromState();
             alert("進捗データを正常にインポートしました！");

@@ -20,23 +20,63 @@ window.appState = {
 };
 
 // 1. Initialize State
+function validateAndSanitizeState(rawData) {
+  if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData)) {
+    return null;
+  }
+
+  const expectedClasses = ["standard", "mega", "giga", "bokutai", "gentei"];
+  const rawPos = rawData.possession || rawData;
+  if (!rawPos || typeof rawPos !== 'object' || Array.isArray(rawPos)) {
+    return null;
+  }
+
+  const sanitizedPos = {};
+  let hasValidClass = false;
+
+  expectedClasses.forEach(cl => {
+    sanitizedPos[cl] = {};
+    const rawClassData = rawPos[cl];
+    if (rawClassData && typeof rawClassData === 'object' && !Array.isArray(rawClassData)) {
+      hasValidClass = true;
+      Object.keys(rawClassData).forEach(key => {
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+          return;
+        }
+        sanitizedPos[cl][key] = !!rawClassData[key];
+      });
+    }
+  });
+
+  if (!hasValidClass) {
+    return null;
+  }
+
+  let satellite = "pegasus";
+  if (rawData.satellite && typeof rawData.satellite === 'string') {
+    if (["pegasus", "leo", "dragon"].includes(rawData.satellite)) {
+      satellite = rawData.satellite;
+    }
+  }
+
+  return {
+    satellite: satellite,
+    possession: sanitizedPos
+  };
+}
+
 function initializeState(forceResetDefault = false) {
   const savedState = localStorage.getItem(STORAGE_KEY);
   
   if (savedState && !forceResetDefault) {
     try {
-      const data = JSON.parse(savedState);
-      appPossession = data.possession || data; // handle wrapped or unwrapped structure
-      activeSatellite = data.satellite || "pegasus";
-      
-      // Ensure all classes exist
-      if (!appPossession.standard) appPossession.standard = {};
-      if (!appPossession.mega) appPossession.mega = {};
-      if (!appPossession.giga) appPossession.giga = {};
-      if (!appPossession.bokutai) appPossession.bokutai = {};
-      if (!appPossession.gentei) appPossession.gentei = {};
-      
-      return;
+      const rawData = JSON.parse(savedState);
+      const validated = validateAndSanitizeState(rawData);
+      if (validated) {
+        appPossession = validated.possession;
+        activeSatellite = validated.satellite;
+        return;
+      }
     } catch (e) {
       console.error("Failed to parse saved state, resetting...", e);
     }
@@ -684,15 +724,15 @@ function setupEventListeners() {
       reader.onload = function(event) {
         try {
           const parsed = JSON.parse(event.target.result);
-          const pos = parsed.possession || parsed;
-          if (pos.standard && pos.mega && pos.giga && pos.bokutai) {
-            appPossession = pos;
-            activeSatellite = parsed.satellite || activeSatellite;
+          const validated = validateAndSanitizeState(parsed);
+          if (validated) {
+            appPossession = validated.possession;
+            activeSatellite = validated.satellite;
             saveState();
             syncAllUIFromState();
             alert("データを正常にインポートしました！");
           } else {
-            alert("無効なファイル形式です。");
+            alert("無効なファイル形式です。必要なデータ構造が見つかりません。");
           }
         } catch (err) {
           alert("ファイルの解析に失敗しました。");

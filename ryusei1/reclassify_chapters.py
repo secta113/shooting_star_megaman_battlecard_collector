@@ -143,6 +143,8 @@ def get_text_milestone(text):
     return None
 
 def get_card_earliest_milestone(card):
+    if card.get("no") == 130:
+        return 3
     sources = []
     
     # 1. Parse source field

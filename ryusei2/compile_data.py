@@ -64,27 +64,35 @@ def determine_location_area(loc):
     if not loc:
         return None
         
+    # Ignore multiplayer/communication battle rewards
+    if "通信対戦" in loc or "★" in loc:
+        return None
+        
+    # Ignore Shopping Plaza Wave Merchant since its inventory updates in late game
+    if "ショッピングプラザの電波の電波商人" in loc:
+        return None
+        
     # Post-game checks
-    if any(k in loc for k in ["裏", "じげんのハザマ", "ハザマ", "いじげん", "ツカサ", "ジェミニ", "アポロン", "マスター・シン", "Xa", "ブライ SX"]):
+    if any(k in loc for k in ["裏", "じげんのハザマ", "ハザマ", "いじげん", "ツカサ", "ジェミニ", "アポロン", "マスター・シン", "Xa", "ブライ SX", "ミソラ", "あかね", "アガメ", "こわれた"]):
         return "post_game"
         
     # Late game / Ra Mu (Ch 7 / Final)
-    if any(k in loc for k in ["だいかいだん", "へいしの間", "ゆりかごの間", "神殿", "ラ・ムー", "ムー大陸"]):
+    if any(k in loc for k in ["だいかいだん", "へいしの間", "ゆりかごの間", "神殿", "ラ・ムー", "ムー大陸", "ムーたいりく", "しんかん", "エランド", "モンショウ"]):
         return "ra_mu"
         
     # Empty (Ch 6)
-    if any(k in loc for k in ["バミューダ", "ラビリンス", "オリヒメ", "アジト", "エンプティー"]):
+    if any(k in loc for k in ["バミューダ", "ラビリンス", "オリヒメ", "アジト", "エンプティー", "ピカヤマ"]):
         return "empty"
         
-    # Condor Geograph (Ch 5 Late)
-    if any(k in loc for k in ["ナンスカいせき１", "しょくだい", "ナンスカいせき２", "ナンスカノオトメ", "せいなるほのお", "コンドル"]):
+    # Condor Geograph (Ch 5 Late) - Nanska
+    if any(k in loc for k in ["ナンスカ", "でんりゅうイワ", "ムーのぞう", "ちじょうえ", "こだいトンボ", "せいなるほのお", "しょくだい", "コンドル", "イケツラ", "リズ・ムンスカ"]):
         return "condor_geograph"
         
-    # Brachio Wave (Ch 5 Early)
+    # Brachio Wave (Ch 5 Early) - Donbura
     if any(k in loc for k in ["ドンブラー村", "クック", "てんぼうだい", "そうがんきょう", 
                               "ドッシーのいりえ", "ひつじ", "ドンブラー湖１", "ドンブラー湖２", 
                               "オンスイプール", "オウのカンムリ", "ミスター・タコ", "ちんぼつせん", 
-                              "ナンスカ", "でんりゅうイワ", "ムーのぞう", "ちじょうえ", "こだいトンボ", "ブラキオ"]):
+                              "とまったふうしゃ", "ブラキオ", "スカイウェーブ", "ヒロイ"]):
         return "brachio_wave"
         
     # Ophiucus Queen (Ch 4)
@@ -92,17 +100,19 @@ def determine_location_area(loc):
         return "ophiucus_queen"
         
     # Harp Note (Ch 3)
-    if any(k in loc for k in ["ＢＩＧＷＡＶＥ", "ワゴンセール", "びじゅつかん", "カンリシステム", "ミソラ", "ハープ"]):
+    if any(k in loc for k in ["ＢＩＧＷＡＶＥ", "ワゴンセール", "びじゅつかん", "カンリシステム", "ハープ", "あいざわ", "ふるいそうがんきょう",
+                              "ゴン太のへや", "キザマロのへや", "ごちゃごちゃハコ"]):
         return "harp_note"
         
     # Yeti Blizzard (Ch 2 Late)
-    if any(k in loc for k in ["ゲレンデ", "プロコース", "イエティ"]):
+    if any(k in loc for k in ["ゲレンデ", "プロコース", "イエティ", "リフト"]):
         return "yeti_blizzard"
         
     # Ox Fire (Ch 2 Early)
     if any(k in loc for k in ["ヤエバリゾート", "ユキダルマ", "グルメタウン", "フランクフルト", 
                               "こおりのぞう", "リゾートホテル", "しゅくはくモニター", "あんないパネル", 
-                              "スウィートルーム", "てんがいベッド", "オックス"]):
+                              "スウィートルーム", "てんがいベッド", "オックス", "きょだいてっぱん", "ふんすい",
+                              "いいんちょうのへや"]):
         return "ox_fire"
         
     # Phantom Black (Ch 1)
@@ -110,32 +120,71 @@ def determine_location_area(loc):
                               "イヌごや", "ポスト", "あかポスト", "カンバン", "いいんちょう", "オシャレタンス", "ゴン太", 
                               "キザマロ", "ごちゃごちゃハコ", "ヒルズ前どおり", "電波ひょうしき", "ロッポンドーヒルズ", 
                               "メガ・ディスプレイ", "ショッピングプラザ", "カンシカメラ", "えいがかん", "ＴＫタワー", 
-                              "ＴＫアンテナ", "初期フォルダ", "通信対戦", "ファントム"]):
+                              "ＴＫアンテナ", "初期フォルダ", "ファントム", "ふみだい", "ディスプレイ"]):
         return "phantom_black"
         
-    # Fallback/Misc helper matching
-    if any(k in loc for k in ["ピカヤマ", "イケツラ", "あいざわ", "ヒロイ", "ミソラ"]):
-        return "phantom_black"
-        
-    if any(k in loc for k in ["アガメ", "リズ・ムンスカ"]):
+    return None
+
+def is_level_3_card(no, name, virus_name):
+    if name.endswith("３") or name.endswith("3"):
+        return True
+    if 31 <= no <= 117 and no % 3 == 0:
+        return True
+    level_3_viruses = {
+        "オリリン", "ラビニトロ", "スッガーン", "ウミニガー", "ヌチャーラ", 
+        "スノーゴロリンガ", "ピラニッガ", "プロテクトアイ", "ホタリッガ", 
+        "ギガステルス", "エレファラオ", "バケヌッキー", "フラッタライザー", 
+        "カカペギロ", "ポワラン", "ハンマリドン", "ニョロフンガー", 
+        "モノソーディル", "ジャイアントフェイス", "デビルブラック", "バサリッガー"
+    }
+    if virus_name in level_3_viruses or virus_name.endswith("３") or virus_name.endswith("3"):
+        return True
+    return False
+
+def is_level_2_card(no, name, virus_name):
+    if name.endswith("２") or name.endswith("2"):
+        return True
+    if 31 <= no <= 117 and no % 3 == 2:
+        return True
+    level_2_viruses = {
+        "オルルン", "ラビロケット", "ドッゴーン", "カワニガー", "ベターラ", 
+        "スノーゴロドン", "ピラニヤン", "ガードアイ", "ホタリーン", "メガステルス", 
+        "エレマミー", "モジャグンソウ", "マネヌッキー", "タツマキマル", "フラッタリオン", 
+        "カカペーニョ", "フワラン", "ハンマリオ", "ニョロバーン", "モノソーディン", 
+        "ストーンヘッド", "キラーブラック", "バサリグル"
+    }
+    if virus_name in level_2_viruses or virus_name.endswith("２") or virus_name.endswith("2"):
+        return True
+    return False
+
+def get_earliest_area(loc_list, no, name, virus_name, has_source):
+    # Special rules for backported viruses
+    if virus_name == "カカペット":
+        return "condor_geograph"
+    if virus_name == "バサリカ":
         return "brachio_wave"
         
-    return "phantom_black"
-
-def get_earliest_area(loc_list):
+    if is_level_3_card(no, name, virus_name) and not has_source:
+        return "post_game"
+        
+    is_lvl_2 = is_level_2_card(no, name, virus_name)
+    
     earliest_idx = len(AREA_ORDER) - 1
     has_valid = False
     
     for loc in loc_list:
         area = determine_location_area(loc)
         if area:
+            if is_lvl_2 and area == "phantom_black":
+                # Level 2 cards cannot be obtained in Chapter 1
+                continue
             has_valid = True
             idx = AREA_ORDER.index(area)
             if idx < earliest_idx:
                 earliest_idx = idx
                 
     if not has_valid:
-        return "phantom_black"
+        return "ox_fire" if is_lvl_2 else "phantom_black"
     return AREA_ORDER[earliest_idx]
 
 def main():
@@ -174,16 +223,20 @@ def main():
         
         # Split source and virus_loc into separate possible locations for area mapping
         locations = []
-        if source:
-            locations.extend([p.strip() for p in re.split(r'\s{2,}|\n+', source) if p.strip()])
-        if virus_loc_val:
+        clean_source = source.strip() if source else ""
+        if clean_source:
+            # Normalize by replacing any '★' with '\n★' to split glued sources
+            normalized_source = clean_source.replace("★", "\n★")
+            locations.extend([p.strip() for p in re.split(r'\s{2,}|\n+', normalized_source) if p.strip()])
+        elif virus_loc_val:
             locations.extend([p.strip() for p in re.split(r'\s{2,}|\n+', virus_loc_val) if p.strip()])
             
-        area_id = get_earliest_area(locations)
+        area_id = get_earliest_area(locations, no, name, virus_val, bool(clean_source))
         
         # Format values for flowchart.js
         # Split source into list items, joining trailing explanation parenthesis lines
-        raw_lines = [l.strip() for l in source.split('\n') if l.strip()]
+        normalized_source = clean_source.replace("★", "\n★") if clean_source else ""
+        raw_lines = [l.strip() for l in normalized_source.split('\n') if l.strip()]
         details_list = []
         for line in raw_lines:
             if (line.startswith("（") or line.startswith("(")) and details_list:
@@ -445,7 +498,7 @@ function syncAreaProgressBars() {
   });
 }
 """
-    
+
     with open(flowchart_js_path, "w", encoding="utf-8") as out:
         out.write(flowchart_areas_js + ui_helpers_js)
         

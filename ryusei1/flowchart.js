@@ -2918,13 +2918,6 @@ const FLOWCHART_AREAS = [
         virus_loc: "アマケンがいかんの電波"
       },
       {
-        no: 130,
-        name: "リカバリー８０",
-        details: ["ＢＩＧＷＡＶＥ", "ルナフォルダ"],
-        virus: "",
-        virus_loc: ""
-      },
-      {
         no: 139,
         name: "インビジブル",
         details: ["ルナフォルダ", "しょうめんげんかんの電波（固定）"],
@@ -2970,6 +2963,13 @@ const FLOWCHART_AREAS = [
         no: 126,
         name: "シラハドリ",
         details: ["ＢＩＧＷＡＶＥ"],
+        virus: "",
+        virus_loc: ""
+      },
+      {
+        no: 130,
+        name: "リカバリー８０",
+        details: ["ＢＩＧＷＡＶＥ", "ルナフォルダ"],
         virus: "",
         virus_loc: ""
       },

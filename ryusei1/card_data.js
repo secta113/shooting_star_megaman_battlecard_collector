@@ -1038,7 +1038,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＢＩＧＷＡＶＥ       ルナフォルダ",
-      "earliest_chapter": 2
+      "earliest_chapter": 3
     },
     {
       "no": 131,

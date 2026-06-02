@@ -22,7 +22,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       木のノイズ(固定)       ドラゴンぞうの電脳(固定)       コダマタウン(ランダム)       １Ｆろうか(ランダム)       おくじょう(ランダム)       ノイズウェーブ１(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 4
     },
     {
       "no": 4,
@@ -70,7 +70,7 @@ const CARD_DATABASE = {
       "virus": "バルガンナー",
       "virus_loc": "コダマタウン       委員長のいえの電脳       トロフィーの電脳       スピカモール       ニホンのコスモウェーブ２       やたいの電脳       ふねのノイズ       かんきょうシステムの電脳３       いしがきの電脳       デスクの電脳       しれい室",
       "source": "",
-      "earliest_chapter": 2
+      "earliest_chapter": 3
     },
     {
       "no": 10,
@@ -134,7 +134,7 @@ const CARD_DATABASE = {
       "virus": "コテツード",
       "virus_loc": "スピカモール       ゲームのノイズ       イベントかいじょう       シーサーだいざの電脳       ノイズウェーブ２       キングウォールの電脳       クリムゾンこうじょう       クリムゾンタンクの電脳       クリムゾンマシンの電脳２       クリムゾンマシンの電脳３       ジャミングないぶ４",
       "source": "ちかシェルター(ランダム)       キングウォールの電脳(ランダム)       クリムゾンこうじょう(ランダム)       ノイズウェーブ５(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 18,
@@ -142,7 +142,7 @@ const CARD_DATABASE = {
       "virus": "マサムネード",
       "virus_loc": "ノイズウェーブ４       ノイズウェーブ５       ブラックホールサーバー２",
       "source": "",
-      "earliest_chapter": 8
+      "earliest_chapter": 7
     },
     {
       "no": 19,
@@ -166,7 +166,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＷＡＸＡフォルダ（フォルダ２個目）に入っている       コダマタウン(固定)       かんきょうシステムの電脳１(固定)       かんきょうシステムの電脳１(ランダム)       アイランドディスプレイの電脳(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 22,
@@ -198,7 +198,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "はいしゃの電脳(固定)       サテラポリスほんぶ(固定)       しれい室(ランダム)       メインコンピュータの電脳(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 4
     },
     {
       "no": 26,
@@ -206,7 +206,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ショーウィンドウのノイズ(固定)       クリムゾンマシンの電脳１(固定)       クリムゾンマシンの電脳２（ランダム）       クリムゾンタンクの電脳（ランダム）       オービタルベース(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 27,
@@ -214,7 +214,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＷＡＸＡフォルダ（フォルダ２個目）に入っている       ＢＩＧＷＡＶＥで購入       そとうちゅうのコスモウェーブ１(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 28,
@@ -222,7 +222,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       スピカモール(固定)       テニスコートのノイズ(固定)       おくじょう(ランダム)       クリムゾンマシンの電脳１(ランダム)       クリムゾンマシンの電脳３（ランダム）       ノイズウェーブ３(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 29,
@@ -230,7 +230,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "けいそくそうちの電脳(固定)       流星コントロールそうちの電脳(固定)       オービタルベース(ランダム)       メテオサーバー３(ランダム)       そとうちゅうのコスモウェーブ１(ランダム)       そとうちゅうのコスモウェーブ２(ランダム)       ＦＭ星のコスモウェーブ１(ランダム)",
-      "earliest_chapter": 7
+      "earliest_chapter": 6
     },
     {
       "no": 30,
@@ -238,7 +238,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＢＩＧＷＡＶＥで購入",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 31,
@@ -262,7 +262,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ノイズウェーブ４(固定)        ＦＭ星のコスモウェーブ２       （トレーダーＳＰのスターチャンスモードに       　３回突入で開く扉の先）        そとうちゅうのコスモウェーブ１(ランダム)       そとうちゅうのコスモウェーブ２(ランダム)       ブラックホールサーバー１(ランダム)       ブラックホールサーバー２(ランダム)",
-      "earliest_chapter": 8
+      "earliest_chapter": 7
     },
     {
       "no": 34,
@@ -318,7 +318,7 @@ const CARD_DATABASE = {
       "virus": "ハンマリー",
       "virus_loc": "ノイズウェーブ２       ちかシェルター       クリムゾンこうじょう       クリムゾンマシンの電脳２       オービタルベース       流星コントロールそうちの電脳",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       ちかシェルター(ランダム)       そとうちゅうのコスモウェーブ１(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 41,
@@ -326,7 +326,7 @@ const CARD_DATABASE = {
       "virus": "ハンマリオ",
       "virus_loc": "そとうちゅうのコスモウェーブ１       そとうちゅうのコスモウェーブ２",
       "source": "",
-      "earliest_chapter": 7
+      "earliest_chapter": 8
     },
     {
       "no": 42,
@@ -334,7 +334,7 @@ const CARD_DATABASE = {
       "virus": "ハンマリドン",
       "virus_loc": "ブラックホールサーバー２",
       "source": "",
-      "earliest_chapter": 7
+      "earliest_chapter": 8
     },
     {
       "no": 43,
@@ -350,7 +350,7 @@ const CARD_DATABASE = {
       "virus": "マイジャラー",
       "virus_loc": "シューティングゲームの電脳       カジノコインのノイズ",
       "source": "カジノコインのノイズ(固定)       ノイズウェーブ５（ランダム）",
-      "earliest_chapter": 8
+      "earliest_chapter": 6
     },
     {
       "no": 45,
@@ -366,7 +366,7 @@ const CARD_DATABASE = {
       "virus": "ストンゴ",
       "virus_loc": "１Ｆろうか       おくじょう       バスケゴールのノイズ       ショーウィンドウのノイズ       セットの電脳       テニスコートのノイズ       ニホンのコスモウェーブ１       ＷＡＸＡニホンしぶ       サテラポリスほんぶ       あんないばんの電脳       せかいちずのノイズ       しれい室       メインコンピュータの電脳       かんりモニターの電脳       ノイズウェーブ１       クリムゾンマシンの電脳１",
       "source": "ＢＩＧＷＡＶＥで購入",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 47,
@@ -398,7 +398,7 @@ const CARD_DATABASE = {
       "virus": "ブルーホイルズ",
       "virus_loc": "スピカモール       ガムのじはんきの電脳       オクダマスタジオのかいさつの電脳       ニホンのコスモウェーブ１       ドラゴンぞうの電脳       ＷＡＸＡニホンしぶ       デスクの電脳       あんないばんの電脳       メインコンピュータの電脳",
       "source": "ノイズウェーブ４(ランダム)       ＦＭ星のコスモウェーブ３(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 4
     },
     {
       "no": 51,
@@ -422,7 +422,7 @@ const CARD_DATABASE = {
       "virus": "アロスカルド",
       "virus_loc": "ノイズウェーブ４       ノイズウェーブ５       そとうちゅうのコスモウェーブ１       そとうちゅうのコスモウェーブ２",
       "source": "",
-      "earliest_chapter": 8
+      "earliest_chapter": 7
     },
     {
       "no": 54,
@@ -438,7 +438,7 @@ const CARD_DATABASE = {
       "virus": "ムーキューブ",
       "virus_loc": "メテオサーバー２       メテオサーバー３",
       "source": "メテオサーバー１(固定)       クリムゾンこうじょう(ランダム)       メテオサーバー２(ランダム)       そとうちゅうのコスモウェーブ１(ランダム)",
-      "earliest_chapter": 7
+      "earliest_chapter": 6
     },
     {
       "no": 56,
@@ -470,7 +470,7 @@ const CARD_DATABASE = {
       "virus": "デスボマー",
       "virus_loc": "メテオサーバー２",
       "source": "ＦＭ星のコスモウェーブ３(ランダム)",
-      "earliest_chapter": 8
+      "earliest_chapter": 7
     },
     {
       "no": 60,
@@ -494,7 +494,7 @@ const CARD_DATABASE = {
       "virus": "ドッゴーン",
       "virus_loc": "おくじょう       はいしゃの電脳       オクダマスタジオのかいさつの電脳       木のノイズ       ニホンのコスモウェーブ１       しれい室       ノイズウェーブ１       ちかシェルター       キングウォールの電脳",
       "source": "ノイズウェーブ５(ランダム)",
-      "earliest_chapter": 5
+      "earliest_chapter": 4
     },
     {
       "no": 63,
@@ -510,7 +510,7 @@ const CARD_DATABASE = {
       "virus": "フレイマー",
       "virus_loc": "クリムゾンマシンの電脳１       クリムゾンマシンの電脳２       クリムゾンマシンの電脳３       ジャミングないぶ４       オービタルベース       流星コントロールそうちの電脳       せつぞく口のノイズ       ノイズウェーブ３",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       ノイズウェーブ２(ランダム)       流星コントロールそうちの電脳(ランダム)       メテオサーバー１(ランダム)       そとうちゅうのコスモウェーブ２(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 65,
@@ -590,7 +590,7 @@ const CARD_DATABASE = {
       "virus": "カワニガー",
       "virus_loc": "ショーウィンドウのノイズ       ゲームのノイズ       シューティングゲームの電脳       しょうめいのノイズ       シーサーだいざの電脳",
       "source": "ノイズウェーブ６(ランダム)       ＦＭ星のコスモウェーブ２(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 8
     },
     {
       "no": 75,
@@ -606,7 +606,7 @@ const CARD_DATABASE = {
       "virus": "キルシャーク",
       "virus_loc": "ガムのじはんきの電脳       かんきょうシステムの電脳２       かんきょうシステムの電脳３       アイランドディスプレイの電脳       ねったいぎょディスプレイのノイズ       ビーチ       いしがきの電脳       せかいちずのノイズ",
       "source": "ＷＡＸＡフォルダ（フォルダ２個目）に入っている       かんきょうシステムの電脳２(ランダム)",
-      "earliest_chapter": 3
+      "earliest_chapter": 1
     },
     {
       "no": 77,
@@ -654,7 +654,7 @@ const CARD_DATABASE = {
       "virus": "ステルス",
       "virus_loc": "セットの電脳       ニホンのコスモウェーブ１       ニホンのコスモウェーブ２       ＷＡＸＡニホンしぶ       サテラポリスほんぶ",
       "source": "サテラポリスほんぶ：コンソールを調べる",
-      "earliest_chapter": 4
+      "earliest_chapter": 2
     },
     {
       "no": 83,
@@ -662,7 +662,7 @@ const CARD_DATABASE = {
       "virus": "メガステルス",
       "virus_loc": "ゲームのノイズ       しょうめいのノイズ       ニホンのコスモウェーブ１       小がたアンテナの電脳       けいそくそうちの電脳       クリムゾンマシンの電脳３       ジャミングないぶ１       ジャミングないぶ３       オービタルベース       きょだいモニターの電脳       流星コントロールそうちの電脳       せつぞく口のノイズ",
       "source": "ブラックホールサーバー１(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 84,
@@ -678,7 +678,7 @@ const CARD_DATABASE = {
       "virus": "エレミーラ",
       "virus_loc": "クリムゾンマシンの電脳１       クリムゾンマシンの電脳２       クリムゾンマシンの電脳３       ジャミングないぶ２       ジャミングないぶ３       きょだいモニターの電脳       流星コントロールそうちの電脳",
       "source": "ノイズウェーブ３(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 86,
@@ -702,7 +702,7 @@ const CARD_DATABASE = {
       "virus": "イナドラン",
       "virus_loc": "メテオサーバー１",
       "source": "ＢＩＧＷＡＶＥで購入       オービタルベース(ランダム)       メテオサーバー３(ランダム)       ノイズウェーブ４(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 89,
@@ -750,7 +750,7 @@ const CARD_DATABASE = {
       "virus": "スパイダラ",
       "virus_loc": "ちかシェルター       木ばこのノイズ       キングウォールの電脳       くうちょうかんりシステムの電脳       クリムゾンこうじょう       クリムゾンタンクの電脳       クリムゾンマシンの電脳１       クリムゾンマシンの電脳３       ジャミングないぶ２       ジャミングないぶ４       ノイズウェーブ３",
       "source": "クリムゾンマシンの電脳２(ランダム)       流星コントロールそうちの電脳(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 95,
@@ -782,7 +782,7 @@ const CARD_DATABASE = {
       "virus": "シュリトウリョウ",
       "virus_loc": "じんたいもけいの電脳       オクダマスタジオのかいさつの電脳       かんりモニターの電脳       クリムゾンマシンの電脳２",
       "source": "",
-      "earliest_chapter": 2
+      "earliest_chapter": 6
     },
     {
       "no": 99,
@@ -798,7 +798,7 @@ const CARD_DATABASE = {
       "virus": "パウダリーフ",
       "virus_loc": "委員長のいえの電脳       セットの電脳       木のノイズ       かんきょうシステムの電脳１       かんきょうシステムの電脳２       サボテンのノイズ       ノイズウェーブ１",
       "source": "ＷＡＸＡフォルダ（フォルダ２個目）に入っている       かんきょうシステムの電脳３(ランダム)",
-      "earliest_chapter": 3
+      "earliest_chapter": 2
     },
     {
       "no": 101,
@@ -822,7 +822,7 @@ const CARD_DATABASE = {
       "virus": "リリッシュ",
       "virus_loc": "１Ｆろうか       おくじょう       かがくぶぶしつイベントかいじょう       シューティングゲームの電脳       オクダマスタジオのかいさつの電脳       木ばこのノイズ       キングウォールの電脳",
       "source": "ノイズウェーブ２(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 104,
@@ -830,7 +830,7 @@ const CARD_DATABASE = {
       "virus": "リリベース",
       "virus_loc": "ノイズウェーブ４       ノイズウェーブ６",
       "source": "",
-      "earliest_chapter": 8
+      "earliest_chapter": 7
     },
     {
       "no": 105,
@@ -886,7 +886,7 @@ const CARD_DATABASE = {
       "virus": "ノイズドウィザードＳ１",
       "virus_loc": "ノイズウェーブ３",
       "source": "",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 112,
@@ -942,7 +942,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "だがしショップで購入",
-      "earliest_chapter": 1
+      "earliest_chapter": 5
     },
     {
       "no": 119,
@@ -950,7 +950,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＢＩＧＷＡＶＥで購入",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 120,
@@ -974,7 +974,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ストーリー中に育田先生からメールでもらう       ノイズウェーブ１のノイズのかけら交換屋",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 123,
@@ -1006,7 +1006,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ちょうせいモニターの電脳(固定)       ＢＩＧＷＡＶＥで購入       スタジオかんない（ランダム）       とくせつステージ(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 127,
@@ -1022,7 +1022,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "だがしショップで購入",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 129,
@@ -1046,7 +1046,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ノイズウェーブ４(固定)       ノイズウェーブ５(ランダム)       ＦＭ星のコスモウェーブ１（ランダム）       ブラックホールサーバー１(ランダム)",
-      "earliest_chapter": 8
+      "earliest_chapter": 2
     },
     {
       "no": 132,
@@ -1062,7 +1062,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       だがしショップで購入       ちかシェルター(ランダム)",
-      "earliest_chapter": 6
+      "earliest_chapter": 5
     },
     {
       "no": 134,
@@ -1078,7 +1078,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＷＡＸＡフォルダ（フォルダ２個目）に入っている       ダイゴフォルダ（フォルダ３個目）に入っている       委員長のいえの電脳（ランダム）       ロケットの電脳１(固定)       カードベンダーの電脳(固定)       やたいの電脳(固定)       おくじょう(ランダム)       きねんじゅの電脳(ランダム)       ロケットの電脳２(ランダム)       ぼうさいシステムの電脳(ランダム)",
-      "earliest_chapter": 4
+      "earliest_chapter": 1
     },
     {
       "no": 136,
@@ -1086,7 +1086,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       ビーチ：ビーチチェアを調べる       かんきょうシステムの電脳２(固定)       かんきょうシステムの電脳３（ランダム）       ニホンのコスモウェーブ２(ランダム)       かんきょうシステムの電脳１(ランダム)       ビーチ(ランダム)       あんないばんの電脳（ランダム）",
-      "earliest_chapter": 3
+      "earliest_chapter": 2
     },
     {
       "no": 137,
@@ -1110,7 +1110,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "だがしショップで購入",
-      "earliest_chapter": 2
+      "earliest_chapter": 5
     },
     {
       "no": 140,
@@ -1142,7 +1142,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ＷＡＸＡフォルダ（フォルダ２個目）に入っている       おくじょう(固定)       コダマタウン(ランダム)       １Ｆろうか（ランダム）       かがくぶぶしつ(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 144,
@@ -1174,7 +1174,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       ＢＩＧＷＡＶＥで購入       スタントカーの電脳(ランダム)       こものとだなの電脳(ランダム)",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 148,
@@ -1190,7 +1190,7 @@ const CARD_DATABASE = {
       "virus": "",
       "virus_loc": "",
       "source": "ダイゴフォルダ（フォルダ３個目）に入っている       ニホンのコスモウェーブ２の電波商人",
-      "earliest_chapter": 2
+      "earliest_chapter": 1
     },
     {
       "no": 150,
